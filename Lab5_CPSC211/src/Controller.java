@@ -26,24 +26,19 @@ public class Controller
 		int numVertices = input.nextInt();
 		Graph graph = new Graph(numVertices);
 		
-		for (int i = 0; i < numVertices;)
+		for (int i = 0; i < numVertices; i++)
 		{
-			if (input.hasNextLine() == true)
+			String line = input.nextLine();
+			Scanner linescanner = new Scanner(line);
+			
+			while (linescanner.hasNext())
 			{
-				System.out.println("worked");
-				graph.addEdge(i, input.nextInt());
-				String next = input.next();
-				if (next.equals("\n"))
-				{
-					i++;
-				}
-			}
-			else
-			{
-				i++;
+				graph.addEdge(i, linescanner.nextInt());
 			}
 			
 		}
+		graph.Solve(graph, 0);
+		
 		
 	}
 	
