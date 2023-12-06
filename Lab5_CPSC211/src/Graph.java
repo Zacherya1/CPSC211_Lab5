@@ -18,44 +18,42 @@ public class Graph
         matrix[source][destination] = true;
     }
     
-    public void bfs(Graph graph, int startingVertex, Queue<Integer> queue, boolean[] visited) 
+    public void bfs(Graph graph, Queue<Integer> queue, boolean[] visited) 
     {
-    	queue.add(startingVertex);
-        visited[startingVertex] = true;
-    
-
-        while (queue.isEmpty() == false) 
+    	if (queue.isEmpty()) 
+    	{
+            return;
+        }
+    	
+        int current = queue.remove();
+        
+        for (int i = 0; i < matrix[0].length; i++) 
         {
-            int current = queue.remove();
-
-            for (int i = 0; i < matrix[0].length; i++) 
+            if (graph.matrix[current][i] == true)
             {
-                if (graph.matrix[current][i] == true)
-                {
-                	if (visited[i] == false)
-                	{
-                        queue.add(i);
-                    }
+
+            	if (visited[i] == false)
+            	{
+            		visited[i] = true;
+                    queue.add(i);
                 }
             }
-            if (visited[current] == false) //if current hasnt been visited yet, add it to visited
-    		{
-    			visited[current] = true;
-    		}
-
-            System.out.println(queue.remove());
-            bfs(graph, startingVertex, queue, visited);
         }
-
+ 
+        bfs(graph, queue, visited);
     }
+    
 
     public void Solve(Graph graph, int startingVertex) 
     {
         Queue<Integer> queue = new QueueImplementation<Integer>();
         boolean[] visited = new boolean[numVertices];
 
-        bfs(graph, startingVertex, queue, visited);
+        
+        queue.add(0);
+        bfs(graph, queue, visited);
 
+        
         boolean allVisited = true;
         
         for (int i = 0; i < visited.length; i++)
