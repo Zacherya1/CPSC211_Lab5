@@ -26,6 +26,10 @@ public class Controller
 		int numVertices = input.nextInt();
 		Graph graph = new Graph(numVertices);
 		
+		//i forgot i had to add this and was ripping my hair out for 2 days trying to 
+		//figure out why the nextLine() wasn't working right. :(
+		input.nextLine();
+		
 		for (int i = 0; i < numVertices; i++)
 		{
 			String line = input.nextLine();
@@ -37,9 +41,7 @@ public class Controller
 			}
 			
 		}
-		graph.Solve(graph, 0);
-		
-		
+		graph.Solve(0);
 	}
 	
 	public File getMapFileFromUser()
